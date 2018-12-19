@@ -1,0 +1,11 @@
+{
+	"type": "object",
+	"properties": {
+		"regex": {
+			"instanceOf": "RegExp"
+		},
+		"output": {
+			"type": "string"
+		}
+	}
+}
