@@ -6,6 +6,9 @@
 		},
 		"output": {
 			"type": "string"
+		},
+		"verbose": {
+			"type": "boolean"
 		}
 	}
 }

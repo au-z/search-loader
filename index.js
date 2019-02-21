@@ -11,11 +11,15 @@ async function matchesToFile(path, resourcePath, matches) {
 		searchResults = JSON.parse(file)
 	} catch (err) {}
 	searchResults[resourcePath] = matches
-	fs.writeFileSync(path, JSON.stringify(searchResults, null, 2))
+	fs.writeFileSync(path, JSON.stringify(searchResults, null, 2), {
+		encoding: 'utf-8',
+		flag: 'w',
+	})
 }
 
 module.exports = function loader(src) {
 	const options = utils.getOptions(this) || {}
+	options.verbose = options.verbose || false
 	validateOptions(schema, options, 'Search Loader')
 
 	const matchSet = new Set()
@@ -24,7 +28,9 @@ module.exports = function loader(src) {
 	}
 	const matches = [...matchSet]
 
-	console.log(`\n${this.resourcePath}: [${matches}]`)
+	if(options.verbose) {
+		console.log(`\n${this.resourcePath}: [${matches}]`)
+	}
 	if(matches.length > 0) {
 		matchesToFile(options.output, this.resourcePath, matches)
 	}

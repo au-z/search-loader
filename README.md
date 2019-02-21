@@ -23,6 +23,7 @@ const webpackConfiguration = {
             options: {
               regex: new RegExp(/test/, 'g'),
               output: path.resolve(__dirname, 'search/output.json'),
+              verbose: false,
             },
           },
         ],
@@ -39,3 +40,4 @@ const webpackConfiguration = {
 - **regex**: A regular expression to apply to the source. Don't forget the 'g' flag if you want to find all matches
   within a source file.
 - **output**: An absolute file path to store the search results.
+- **verbose**: Prints out search results and other debugging messages.
