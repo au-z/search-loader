@@ -1,2 +1,5 @@
 .vs
 node_modules
+
+test/matches.json
+test/output.js
