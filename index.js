@@ -2,20 +2,22 @@ const fs = require('fs')
 const schema = require('./options.json')
 const utils = require('loader-utils')
 const validateOptions = require('schema-utils')
-const fileOptions = {
-	encoding: 'utf-8',
-	flag: 'w+',
-}
 
 /* eslint-disable require-jsdoc */
 function matchesToFile(path, resourcePath, matches) {
-	const file = fs.readFileSync(path, fileOptions)
+	const file = fs.readFileSync(path, {
+		encoding: 'utf-8',
+		flag: 'a+',
+	})
 	let searchResults = {}
 	try {
 		searchResults = JSON.parse(file)
 	} catch (err) {}
 	searchResults[resourcePath] = matches
-	fs.writeFileSync(path, JSON.stringify(searchResults, null, 2), fileOptions)
+	fs.writeFileSync(path, JSON.stringify(searchResults, null, 2), {
+		encoding: 'utf-8',
+		flag: 'w',
+	})
 }
 
 module.exports = function loader(src) {
