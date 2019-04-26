@@ -1,6 +1,6 @@
 {
   "name": "search-loader",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Search and match file contents for regex patterns.",
   "main": "index.js",
   "scripts": {
