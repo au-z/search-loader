@@ -13,7 +13,7 @@ function matchesToFile(path, resourcePath, matches) {
 	try {
 		searchResults = JSON.parse(file)
 	} catch (err) {}
-	searchResults[resourcePath] = matches
+	searchResults[resourcePath] = Array.from(new Set([...searchResults[resourcePath] || [], ...matches]))
 	fs.writeFileSync(path, JSON.stringify(searchResults, null, 2), {
 		encoding: 'utf-8',
 		flag: 'w',
